@@ -14,7 +14,6 @@ module.exports = {
   output: {
     filename: 'index.js',
     path: path.resolve(__dirname, 'build'),
-    library: 'g-hero-section',
     libraryTarget: 'umd',
   },
   module: {
@@ -31,7 +30,7 @@ module.exports = {
       },
       {
         test: /\.(png|svg|jpg|gif)$/,
-        use: 'file-loader',
+        loader: 'url-loader',
       },
     ],
   },
