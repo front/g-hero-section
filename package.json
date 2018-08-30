@@ -1,6 +1,6 @@
 {
   "name": "@frontkom/g-hero-section",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "description": "A custom block for gutenberg-js",
   "main": "build/index.js",
   "files": [
