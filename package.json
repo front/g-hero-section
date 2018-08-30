@@ -25,8 +25,8 @@
     "npm": ">=5.6.0"
   },
   "peerDependencies": {
-    "@frontkom/gutenberg-js": "^1.2.2",
-    "react": "^16.4.2"
+    "@frontkom/gutenberg-js": "^1.2.1",
+    "react": "^16.3.1"
   },
   "devDependencies": {
     "babel-core": "^6.26.3",
