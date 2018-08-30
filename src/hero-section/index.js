@@ -5,7 +5,6 @@
  */
 import React from 'react';
 import { i18n, components, editor, blocks } from '@frontkom/gutenberg-js';
-const { registerBlockType } = blocks;
 
 /**
  * Internal dependencies
@@ -37,9 +36,9 @@ const TEMPLATE = [
 ];
 
 
-const name = 'hero-section';
+export const name = 'hero-section';
 
-const settings = {
+export const settings = {
   title: __('Hero Section'),
   description: __('Create a landing page combining heading, image, text and button on a smashing background.'),
   icon: 'cover-image',
@@ -203,9 +202,3 @@ const settings = {
     );
   },
 };
-
-
-// Export register block functionality
-export function registerBlocks (category) {
-  registerBlockType(`${category}/${name}`, { category, ...settings });
-}
