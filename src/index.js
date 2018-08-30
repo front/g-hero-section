@@ -4,7 +4,8 @@
  * External dependencies
  */
 import React from 'react';
-import { i18n, components, editor } from '@frontkom/gutenberg-js';
+import { i18n, components, editor, blocks } from '@frontkom/gutenberg-js';
+const { registerBlockType } = blocks;
 
 /**
  * Internal dependencies
@@ -36,12 +37,12 @@ const TEMPLATE = [
 ];
 
 
-export const name = 'storypage/hero-section';
+const name = 'hero-section';
 
-export const settings = {
+const settings = {
   title: __('Hero Section'),
+  description: __('Create a landing page combining heading, image, text and button on a smashing background.'),
   icon: 'cover-image',
-  category: 'storypage',
 
   attributes: {
     imageUrl: {
@@ -76,8 +77,6 @@ export const settings = {
       default: 960,
     },
   },
-
-  description: __('Create a landing page combining heading, image, text and button on a smashing background.'),
 
   edit ({ attributes, className, setAttributes }) {
     const {
@@ -204,3 +203,9 @@ export const settings = {
     );
   },
 };
+
+
+// Export register block functionality
+export function registerBlocks (category) {
+  registerBlockType(`${category}/${name}`, { category, ...settings });
+}
