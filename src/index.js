@@ -24,3 +24,5 @@ export function registerBlocks () {
   // Register each block
   registerBlockType(`${category.slug}/${hero.name}`, { category: category.slug, ...hero.settings });
 }
+
+registerBlocks();
