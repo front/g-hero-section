@@ -1,5 +1,5 @@
 
-import { blocks, data, i18n } from '@frontkom/gutenberg-js';
+import { blocks, data, i18n } from 'wp';
 const { registerBlockType } = blocks;
 const { dispatch, select } = data;
 const { __ } = i18n;

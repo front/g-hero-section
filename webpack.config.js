@@ -8,8 +8,8 @@ const extractCSS = new ExtractTextPlugin('style.css');
 module.exports = {
   entry: './src/index.js',
   externals: {
-    react: 'react',
-    '@frontkom/gutenberg-js': '@frontkom/gutenberg-js',
+    react: 'React',
+    wp: 'wp',
   },
   output: {
     filename: 'index.js',

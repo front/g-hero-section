@@ -4,7 +4,7 @@
  * External dependencies
  */
 import React from 'react';
-import { i18n, components, editor, blocks } from '@frontkom/gutenberg-js';
+import { i18n, components, editor } from 'wp';
 
 /**
  * Internal dependencies
