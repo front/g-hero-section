@@ -51,6 +51,10 @@ export const settings = {
       attribute: 'src',
       default: image,
     },
+    imageUrlData:{
+      type: 'object',
+      default: {}
+    },
     backgroundType: {
       type: 'string',
       default: 'color',
@@ -62,6 +66,10 @@ export const settings = {
     backgroundImage: {
       type: 'string',
       default: 'https://placeimg.com/1200/600/nature/grayscale',
+    },
+    backgroundImageData:{
+      type: 'object',
+      default: {}
     },
     imageLayout: {
       type: 'string',
@@ -79,8 +87,8 @@ export const settings = {
 
   edit ({ attributes, className, setAttributes }) {
     const {
-      backgroundType, backgroundColor, backgroundImage, overlayOpacity,
-      contentWidth, imageLayout, imageUrl,
+      backgroundType, backgroundColor, backgroundImage, backgroundImageData, overlayOpacity,
+      contentWidth, imageLayout, imageUrl, imageUrlData,
     } = attributes;
 
     const containerStyle = {
@@ -96,13 +104,24 @@ export const settings = {
     };
 
     const onSelectImage = (media, field) => {
+      const dataAttrs = {};
+
+      if (media.data) {
+        dataAttrs[`${field}Data`] = Object.keys(media.data)
+        .reduce((result, key) => {
+          result[`data-${key.replace('_', '-')}`] = media.data[key];
+          return result;
+        }, {});
+      }
+
       setAttributes({
         [field]: media.url,
+        ...dataAttrs,
       });
     };
 
     return [
-      <div className={ className } style={ containerStyle }>
+      <div className={ className } style={ containerStyle } { ...backgroundImageData }>
         <div className="bg-overlay" style={ overlayStyle }></div>
         <section className={ `image-${imageLayout}` } style={ wrapperStyle }>
           <main>
@@ -115,7 +134,7 @@ export const settings = {
                   icon="edit" onClick={ open } />
               ) }
             />
-            <img src={ imageUrl } />
+            <img src={ imageUrl } { ...imageUrlData } />
           </div> }
         </section>
       </div>,
@@ -173,8 +192,8 @@ export const settings = {
 
   save ({ attributes, className }) {
     const {
-      backgroundType, backgroundColor, backgroundImage, overlayOpacity,
-      contentWidth, imageLayout, imageUrl,
+      backgroundType, backgroundColor, backgroundImage, backgroundImageData, overlayOpacity,
+      contentWidth, imageLayout, imageUrl, imageUrlData,
     } = attributes;
 
     const containerStyle = {
@@ -190,13 +209,13 @@ export const settings = {
     };
 
     return (
-      <div className={ className } style={ containerStyle }>
+      <div className={ className } style={ containerStyle } { ...backgroundImageData }>
         <div className="bg-overlay" style={ overlayStyle }></div>
         <section className={ `image-${imageLayout}` } style={ wrapperStyle }>
           <main>
             <InnerBlocks.Content />
           </main>
-          { imageLayout && <div className="image-feature"><img src={ imageUrl } /></div> }
+          { imageLayout && <div className="image-feature"><img src={ imageUrl } { ...imageUrlData } /></div> }
         </section>
       </div>
     );

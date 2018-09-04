@@ -7,7 +7,6 @@ const { __ } = i18n;
 // Import each block
 import * as hero from './hero-section';
 
-
 // Category name and slug
 const category = {
   slug: 'cloudblocks', // needs to match the css class of the block container: ".wp-block-cloudblocks-[block-name]"
