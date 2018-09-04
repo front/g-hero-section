@@ -53,7 +53,7 @@ export const settings = {
     },
     imageUrlData:{
       type: 'object',
-      default: {}
+      default: {},
     },
     backgroundType: {
       type: 'string',
@@ -69,7 +69,7 @@ export const settings = {
     },
     backgroundImageData:{
       type: 'object',
-      default: {}
+      default: {},
     },
     imageLayout: {
       type: 'string',
