@@ -14,7 +14,7 @@ import image from './iphone.svg';
 
 const { __ } = i18n;
 const { PanelBody, BaseControl, RangeControl, IconButton, Toolbar } = components;
-const { InnerBlocks, InspectorControls, PanelColor, MediaUpload, BlockControls } = editor;
+const { InnerBlocks, InspectorControls, PanelColorSettings, MediaUpload, BlockControls } = editor;
 
 
 const TEMPLATE = [
@@ -152,6 +152,10 @@ export const settings = {
 
       <InspectorControls>
         <PanelBody title={ __('Block Settings') }>
+          <BaseControl label="Content Width">
+            <input type="number" value={ contentWidth }
+              onChange={ ev => setAttributes({ contentWidth: ev.target.value }) } />
+          </BaseControl>
 
           {/* Image placement */}
           <BaseControl label="Image Placement">
@@ -169,23 +173,26 @@ export const settings = {
               <option value="image">Image</option>
             </select>
           </BaseControl>
-          { backgroundType === 'image' ?
+
+          { backgroundType === 'image' &&
             <RangeControl
               label={ __('Overlay Opacity') } value={ overlayOpacity }
               onChange={ value => setAttributes({ overlayOpacity: value }) }
               min={ 0 } max={ 100 } step={ 5 }
-            /> :
-            <div className="panel_body-title-hide">
-              <PanelColor
-                title={ __('Background Color') } colorValue={ backgroundColor } initialOpen={ true }
-                onChange={ value => setAttributes({ backgroundColor: value }) }
-              />
-            </div> }
-          <BaseControl label="Content Width">
-            <input type="number" value={ contentWidth }
-              onChange={ ev => setAttributes({ contentWidth: ev.target.value }) } />
-          </BaseControl>
+            /> }
         </PanelBody>
+
+        { backgroundType !== 'image' && <PanelColorSettings
+          title={ __('Color Settings') }
+          initialOpen={ true }
+          colorSettings={ [
+            {
+              value: backgroundColor,
+              onChange: value => setAttributes({ backgroundColor: value }),
+              label: __('Background Color'),
+            },
+          ]}></PanelColorSettings>
+        }
       </InspectorControls>,
     ];
   },
