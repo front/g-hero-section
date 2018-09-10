@@ -82,12 +82,16 @@ export const settings = {
       type: 'number',
       default: 960,
     },
+    align: {
+      type: 'string',
+      default: 'full',
+    },
   },
 
   edit ({ attributes, className, setAttributes }) {
     const {
       backgroundType, backgroundColor, backgroundImage, backgroundImageData, overlayOpacity,
-      contentWidth, imageLayout, imageUrl, imageUrlData,
+      contentWidth, imageLayout, imageUrl, imageUrlData, align,
     } = attributes;
 
     const containerStyle = {
@@ -119,9 +123,11 @@ export const settings = {
       });
     };
 
+    const classes = `${className} align${align}`;
+
     return (
       <Fragment>
-        <div className={ className } style={ containerStyle } { ...backgroundImageData }>
+        <div className={ classes } style={ containerStyle } { ...backgroundImageData }>
           <div className="bg-overlay" style={ overlayStyle }></div>
           <section className={ `image-${imageLayout}` } style={ wrapperStyle }>
             <main>
@@ -227,7 +233,7 @@ export const settings = {
   save ({ attributes, className }) {
     const {
       backgroundType, backgroundColor, backgroundImage, backgroundImageData, overlayOpacity,
-      contentWidth, imageLayout, imageUrl, imageUrlData,
+      contentWidth, imageLayout, imageUrl, imageUrlData, align,
     } = attributes;
 
     const containerStyle = {
@@ -242,8 +248,10 @@ export const settings = {
       maxWidth: contentWidth && `${contentWidth}px`,
     };
 
+    const classes = `${className} align${align}`;
+
     return (
-      <div className={ className } style={ containerStyle } { ...backgroundImageData }>
+      <div className={ classes } style={ containerStyle } { ...backgroundImageData }>
         <div className="bg-overlay" style={ overlayStyle }></div>
         <section className={ `image-${imageLayout}` } style={ wrapperStyle }>
           <main>
@@ -254,4 +262,37 @@ export const settings = {
       </div>
     );
   },
+
+  deprecated: [ {
+    save ({ attributes, className }) {
+      const {
+        backgroundType, backgroundColor, backgroundImage, backgroundImageData, overlayOpacity,
+        contentWidth, imageLayout, imageUrl, imageUrlData,
+      } = attributes;
+
+      const containerStyle = {
+        backgroundColor: backgroundType === 'color' ? backgroundColor : 'black',
+        backgroundImage: backgroundType === 'image' && `url('${backgroundImage}')`,
+      };
+      const overlayStyle = backgroundType === 'color' ? {} : {
+        display: 'block',
+        opacity: parseInt(overlayOpacity, 10) / 100,
+      };
+      const wrapperStyle = {
+        maxWidth: contentWidth && `${contentWidth}px`,
+      };
+
+      return (
+        <div className={ className } style={ containerStyle } { ...backgroundImageData }>
+          <div className="bg-overlay" style={ overlayStyle }></div>
+          <section className={ `image-${imageLayout}` } style={ wrapperStyle }>
+            <main>
+              <InnerBlocks.Content />
+            </main>
+            { imageLayout && <div className="image-feature"><img src={ imageUrl } { ...imageUrlData } /></div> }
+          </section>
+        </div>
+      );
+    },
+  } ],
 };
