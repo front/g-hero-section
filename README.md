@@ -2,6 +2,10 @@
 
 This project is both a Proof of Concept and Boilerplate for blocks meant to be used with the [GutenbergJS](https://github.com/front/gutenberg-js) editor or Gutenberg for WordPress.
 
+## Build folder
+
+The `build` folder is **temporarily** part of this repository in order this block be ready to be downloaded and included in the Gutenberg editor, without any compilation at client-side.
+
 # Installation
 
 Install from npm:
