@@ -35,6 +35,52 @@ const TEMPLATE = [
   }],
 ];
 
+const blockAttributes ={
+  imageUrl: {
+    type: 'string',
+    source: 'attribute',
+    selector: 'img',
+    attribute: 'src',
+    default: image,
+  },
+  imageUrlData:{
+    type: 'object',
+    default: {},
+  },
+  backgroundType: {
+    type: 'string',
+    default: 'color',
+  },
+  backgroundColor: {
+    type: 'string',
+    // default: '#2DB8CA',
+  },
+  backgroundImage: {
+    type: 'string',
+    default: 'https://placeimg.com/1200/600/nature/grayscale',
+  },
+  backgroundImageData:{
+    type: 'object',
+    default: {},
+  },
+  imageLayout: {
+    type: 'string',
+    default: 'right',
+  },
+  overlayOpacity: {
+    type: 'number',
+    default: 40,
+  },
+  contentWidth: {
+    type: 'number',
+    default: 960,
+  },
+  align: {
+    type: 'string',
+    default: 'full',
+  },
+};
+
 export const name = 'hero-section';
 
 export const settings = {
@@ -42,51 +88,7 @@ export const settings = {
   description: __('Create a landing page combining heading, image, text and button on a smashing background.'),
   icon: 'cover-image',
 
-  attributes: {
-    imageUrl: {
-      type: 'string',
-      source: 'attribute',
-      selector: 'img',
-      attribute: 'src',
-      default: image,
-    },
-    imageUrlData:{
-      type: 'object',
-      default: {},
-    },
-    backgroundType: {
-      type: 'string',
-      default: 'color',
-    },
-    backgroundColor: {
-      type: 'string',
-      // default: '#2DB8CA',
-    },
-    backgroundImage: {
-      type: 'string',
-      default: 'https://placeimg.com/1200/600/nature/grayscale',
-    },
-    backgroundImageData:{
-      type: 'object',
-      default: {},
-    },
-    imageLayout: {
-      type: 'string',
-      default: 'right',
-    },
-    overlayOpacity: {
-      type: 'number',
-      default: 40,
-    },
-    contentWidth: {
-      type: 'number',
-      default: 960,
-    },
-    align: {
-      type: 'string',
-      default: 'full',
-    },
-  },
+  attributes: blockAttributes,
 
   edit ({ attributes, className, setAttributes }) {
     const {
@@ -264,6 +266,7 @@ export const settings = {
   },
 
   deprecated: [ {
+    attributes: blockAttributes,
     save ({ attributes, className }) {
       const {
         backgroundType, backgroundColor, backgroundImage, backgroundImageData, overlayOpacity,
