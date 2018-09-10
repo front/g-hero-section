@@ -13,7 +13,7 @@ import './style.scss';
 import image from './iphone.svg';
 
 const { __ } = i18n;
-const { PanelBody, BaseControl, RangeControl, IconButton, Toolbar } = components;
+const { PanelBody, BaseControl, RangeControl, IconButton, Toolbar, SelectControl } = components;
 const { InnerBlocks, InspectorControls, PanelColorSettings, MediaUpload, BlockControls } = editor;
 
 
@@ -152,27 +152,48 @@ export const settings = {
 
       <InspectorControls>
         <PanelBody title={ __('Block Settings') }>
-          <BaseControl label="Content Width">
+          <BaseControl label={ __('Content Width in pixels') }>
             <input type="number" value={ contentWidth }
               onChange={ ev => setAttributes({ contentWidth: ev.target.value }) } />
           </BaseControl>
 
           {/* Image placement */}
-          <BaseControl label="Image Placement">
-            <select value={ imageLayout } onChange={ ev => setAttributes({ imageLayout: ev.target.value }) }>
-              <option value="left">On the left</option>
-              <option value="right">On the right</option>
-              <option value="">No Image</option>
-            </select>
-          </BaseControl>
+          <SelectControl
+            label={ __('Image Placement') }
+            value={ imageLayout }
+            options={ [
+              {
+                label: __('No Image'),
+                value: '',
+              },
+              {
+                label: __('On the left'),
+                value: 'left',
+              },
+              {
+                label: __('On the right'),
+                value: 'right',
+              },
+            ] }
+            onChange={ value => setAttributes({ imageLayout: value }) }
+          />
 
           {/* Background control */}
-          <BaseControl label="Background Type">
-            <select value={ backgroundType } onChange={ ev => setAttributes({ backgroundType: ev.target.value }) }>
-              <option value="color">Solid Color</option>
-              <option value="image">Image</option>
-            </select>
-          </BaseControl>
+          <SelectControl
+            label={ __('Background Type') }
+            value={ backgroundType }
+            options={ [
+              {
+                label: __('Solid Color'),
+                value: 'color',
+              },
+              {
+                label: __('Image'),
+                value: 'image',
+              },
+            ] }
+            onChange={ value => setAttributes({ backgroundType: value }) }
+          />
 
           { backgroundType === 'image' &&
             <RangeControl
