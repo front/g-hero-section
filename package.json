@@ -4,8 +4,15 @@
   "description": "A custom block for gutenberg-js",
   "main": "build/index.js",
   "files": [
-    "build/"
+    "build/",
+    "screenshot.png"
   ],
+  "gutenbergCloud": {
+    "js": "build/index.js",
+    "css": "build/style.css",
+    "screenshot": "screenshot.png",
+    "name": "Hero section"
+  },
   "scripts": {
     "build": "NODE_ENV=production webpack",
     "deploy": "npm run build && npm publish --access public"
