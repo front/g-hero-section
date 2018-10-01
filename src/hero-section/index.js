@@ -298,4 +298,9 @@ export const settings = {
       );
     },
   } ],
+
+  getEditWrapperProps (attributes) {
+    const { align } = attributes;
+    return { 'data-align': align };
+  },
 };
