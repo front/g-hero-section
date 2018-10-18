@@ -21,6 +21,14 @@ import '@frontkom/g-hero-section';
 import '@frontkom/g-hero-section/build/style.css';
 ```
 
+# Dev mode
+
+To run the block in development mode:
+
+```sh
+npm start
+```
+
 ## Project Structure
 TBA
 
