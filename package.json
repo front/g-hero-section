@@ -3,10 +3,6 @@
   "version": "0.7.2",
   "description": "A custom block for Gutenberg Cloud",
   "main": "build/index.js",
-  "files": [
-    "build/",
-    "screenshot.png"
-  ],
   "gutenbergCloud": {
     "js": "build/index.js",
     "css": "build/style.css",
@@ -18,12 +14,17 @@
     "start": "npm run build && BLOCK_DIR=$PWD npm --prefix node_modules/@frontkom/g-editor start",
     "deploy": "npm run build && npm publish --access public"
   },
-  "author": "Frontkom",
+  "author": {
+    "name": "Frontkom",
+    "email": "webadmin@front.no",
+    "url": "https://www.frontkom.no/"
+  },
   "license": "MIT",
   "repository": {
     "type": "git",
     "url": "https://github.com/front/g-hero-section.git"
   },
+  "homepage": "https://github.com/front/g-hero-section#readme",
   "keywords": [
     "gutenberg",
     "gutenberg-cloud"
@@ -52,5 +53,9 @@
     "url-loader": "^1.1.1",
     "webpack": "^4.17.1",
     "webpack-cli": "^3.1.0"
-  }
+  },
+  "files": [
+    "build/",
+    "screenshot.png"
+  ]
 }
