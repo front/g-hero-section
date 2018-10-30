@@ -1,6 +1,6 @@
 {
   "name": "@frontkom/g-hero-section",
-  "version": "0.7.2",
+  "version": "0.7.3",
   "description": "A custom block for Gutenberg Cloud",
   "main": "build/index.js",
   "gutenbergCloud": {
