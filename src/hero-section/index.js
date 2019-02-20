@@ -136,7 +136,8 @@ export const settings = {
               <InnerBlocks template={ TEMPLATE } templateLock={ false } />
             </main>
             { imageLayout && <div className="image-feature">
-              <MediaUpload type="image"
+              <MediaUpload
+                allowedTypes={ ['image'] }
                 onSelect={ media => onSelectImage(media, 'imageUrl') } render={({ open }) => (
                   <IconButton className="components-toolbar__control" label={ __('Edit image') }
                     icon="edit" onClick={ open } />
@@ -149,7 +150,8 @@ export const settings = {
 
         { backgroundType === 'image' && <BlockControls>
           <Toolbar>
-            <MediaUpload type="image"
+            <MediaUpload
+              allowedTypes={ ['image'] }
               onSelect={ media => onSelectImage(media, 'backgroundImage') } render={ ({ open }) => (
                 <IconButton className="components-toolbar__control" label={ __('Edit image') }
                   icon="edit" onClick={ open } />
